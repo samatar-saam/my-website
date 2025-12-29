@@ -45,27 +45,24 @@ img {
   width: 100px;
   height: auto;
 }
-
-
-
 .about-hero {
-  background: white;
+  background: #fff;
   color: #000;
-  padding: 60px 8%;
+  padding: 95px 8% 40px; /* ✅ top padding for fixed navbar */
   text-align: left;
-
 }
 
 .about-hero .hero-text h1 {
-  font-size: 2.2rem;
+  font-size: clamp(28px, 3.2vw, 40px);
   margin-bottom: 10px;
 }
 
 .about-hero .hero-text p {
   max-width: 700px;
-  font-size: 1rem;
+  font-size: clamp(15px, 1.4vw, 18px);
 }
 
+/* If you have hero image */
 .hero-right img {
   width: 100%;
   max-width: 550px;
@@ -74,8 +71,7 @@ img {
   object-fit: cover;
 }
 
-
-
+/* ---------- Wrapper ---------- */
 .about-wrapper {
   padding: 40px 8%;
   background: #f5f7fb;
@@ -84,16 +80,17 @@ img {
 
 .about-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: clamp(22px, 2.5vw, 32px);
   margin-bottom: 30px;
   color: #0a2b5c;
 }
 
+/* ---------- About Cards ---------- */
 .about-card {
   display: flex;
   align-items: center;
   gap: 25px;
-  background: #ffffff;
+  background: #fff;
   padding: 20px 25px;
   border-radius: 18px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -101,7 +98,7 @@ img {
 }
 
 .about-card.reverse {
-  flex-direction: row-reverse;
+  flex-direction: row-reverse; /* ✅ only reverse when class exists */
 }
 
 .about-image img {
@@ -109,18 +106,9 @@ img {
   height: 170px;
   border-radius: 20%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
-.about-card {
-  flex-direction: row-reverse;
-}
-
-.about-image img {
-  width: 170px;
-  height: 170px;
-  border-radius: 20%;
-  object-fit: cover;
-}
 .about-text h2 {
   font-size: 1.3rem;
   margin-bottom: 8px;
@@ -129,29 +117,11 @@ img {
 
 .about-text p {
   font-size: 0.95rem;
-  line-height: 1.6;
   color: #444;
   margin-bottom: 8px;
-  
 }
 
-
-/* -------- RESPONSIVE -------- */
-
-@media (max-width: 768px) {
-  .about-card,
-  .about-card.reverse {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-image img {
-    margin-bottom: 10px;
-  }
-}
-
-/* -------- GRID -------- */
-
+/* ---------- Grid Cards ---------- */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -159,28 +129,13 @@ img {
   margin-top: 20px;
 }
 
-/* -------- CARDS -------- */
-
 .card {
-  background: #ffffff;
+  background: #fff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transition: 0.3s ease;
-  text-align: left;
   border: 1px solid #e3e3e3;
-}
-
-.card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-  color: #0a2b5c;
-}
-
-.card p {
-  font-size: 0.95rem;
-  color: #444;
-  line-height: 1.6;
 }
 
 .card:hover {
@@ -196,19 +151,23 @@ img {
   margin-bottom: 12px;
 }
 
-/* -------- FOOTER -------- */
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #0a2b5c;
+}
 
+.card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* ---------- Footer ---------- */
 footer {
   background-color: #1e3a8a;
   color: white;
   text-align: center;
   padding: 40px 20px;
-  font-family: Arial, sans-serif;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .footer-nav {
@@ -219,35 +178,45 @@ footer {
   flex-wrap: wrap;
 }
 
-.footer-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.footer-nav a:hover {
-  color: #00bfff;
-}
+.footer-nav a { color: white; text-decoration: none; }
+.footer-nav a:hover { color: #00bfff; }
 
 .footer-icons {
   display: flex;
   justify-content: center;
   gap: 25px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
-.footer-icons a {
-  color: white;
-  font-size: 24px;
-  transition: 0.3s;
+.footer-icons a { color: white; font-size: 24px; }
+.footer-icons a:hover { color: #00bfff; }
+
+.footer-copy { font-size: 14px; color: #dcdcdc; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .about-wrapper { padding: 35px 6%; }
+  nav ul li a { font-size: 18px; }
 }
 
-.footer-icons a:hover {
-  color: #00bfff;
+@media (max-width: 768px) {
+  .about-card,
+  .about-card.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .about-hero { text-align: center; }
+  .about-hero .hero-text p { margin: 0 auto; }
 }
 
-.footer-copy {
-  font-size: 14px;
-  color: #dcdcdc;
+@media (max-width: 480px) {
+  .about-wrapper { padding: 28px 5%; }
+  .about-hero { padding: 85px 5% 30px; }
 }
